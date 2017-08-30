@@ -1,0 +1,93 @@
+.sign-in-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: table;
+  /*background-color: rgba(204, 174, 46, 0.8);*/
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.sign-in-left-pane {
+  z-index: 10;
+  width: 50%;
+  min-height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.sign-in-logo {
+  transform: rotate(7deg);
+}
+
+.sign-in-right-pane {
+  vertical-align: middle;
+  width: 50%;
+  min-height: 100%;
+  display: table-cell;
+  background-color: none;
+}
+
+.sign-in-right-pane-image {
+  position: fixed;
+  margin-top: -48vh;
+  min-width: 55vw;
+  min-height: 110vh;
+  color: #FFFFFF;
+  background-image: linear-gradient(to right, rgba(140, 140, 140, 1), rgba(140, 140, 140, 0.6)), url('depressed-crop.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(2px);
+}
+
+.sign-in-right-pane-text {
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+  z-index: 10;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+  min-height: 100%;
+  background-color: none;
+  color: #FFFFFF;
+}
+
+.main-page-wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.main-page-header {
+  background-color: grey;
+}
+
+.main-page-pane-wrapper {
+  display: flex;
+  height: 94.8vh;
+  width: inherit;
+}
+
+.main-page-left-pane {
+  flex: 1;
+  flex-grow: 2;
+  margin-top: 50px;
+}
+
+.main-page-feed {
+  flex: 1;
+  flex-grow: 3;
+  overflow-y: auto;
+
+}
+
+.main-page-feed::-webkit-scrollbar {
+  display: none;
+}
+
+.main-page-right-pane {
+  flex: 1;
+  flex-grow: 2;
+  margin-top: 50px;
+}
