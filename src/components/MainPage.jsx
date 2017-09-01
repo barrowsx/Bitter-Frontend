@@ -1,6 +1,7 @@
 import React from 'react'
-import {Card, Form, Divider, Button, Segment, Image, Icon, Feed} from 'semantic-ui-react'
+import {Card, Button, Segment, Image} from 'semantic-ui-react'
 import PostFeed from './PostFeed'
+import CurrentUserCard from './CurrentUserCard'
 
 class MainPage extends React.Component {
   render() {
@@ -12,13 +13,7 @@ class MainPage extends React.Component {
         <div className={'main-page-pane-wrapper'}>
           <div className={'main-page-left-pane'}>
             <center>
-              <Card>
-                <Card.Content>
-                  At some point there will be
-                  user data here but for now
-                  it's just empty
-                </Card.Content>
-              </Card>
+              <CurrentUserCard />
             </center>
           </div>
           <div className={'main-page-feed'}>

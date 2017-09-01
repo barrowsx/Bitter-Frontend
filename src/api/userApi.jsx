@@ -5,16 +5,26 @@ class UserApi {
     return {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`}
   }
 
-  static testAuth(){
+  static loadCurrentUser(){
+    const myHeaders = this.requestHeaders()
+    const request = new Request('http://localhost:3000/api/v1/users/current', {
+      method: 'GET',
+      headers: myHeaders
+    })
+
+    return fetch(request)
+           .then(response => response.json())
+  }
+
+  static loadUser(user){
     const myHeaders = this.requestHeaders();
-    const request = new Request('http://localhost:3000/api/v1/users/1', {
+    const request = new Request('http://localhost:3000/api/v1/users/' + user.id, {
       method: 'GET',
       headers: myHeaders
     })
 
     return fetch(request)
           .then(response => response.json())
-          .then(json => console.log(json.message))
   }
 
 }

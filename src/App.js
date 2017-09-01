@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SignIn from './components/SignIn'
-import MainPage from './components/MainPage'
-import Routes from './components/Routes'
+// import SignIn from './components/SignIn'
+// import MainPage from './components/MainPage'
+// import Routes from './components/Routes'
 import './App.css';
 
 class App extends Component {

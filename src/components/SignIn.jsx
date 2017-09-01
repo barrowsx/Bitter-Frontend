@@ -1,6 +1,6 @@
 import React from 'react'
-import {Card, Form, Divider, Button, Segment, Image} from 'semantic-ui-react'
-import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom'
+import {Card, Form, Divider, Button, Segment, Image, Transition} from 'semantic-ui-react'
+import {Redirect} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as sessionActions from '../actions/sessionActions'
@@ -8,6 +8,7 @@ import * as sessionActions from '../actions/sessionActions'
 class SignIn extends React.Component {
 
   state = {
+    toggle: true,
     clickedLogin: false,
     credentials: {
       name: '',
@@ -19,16 +20,23 @@ class SignIn extends React.Component {
     this.props.actions.logInUser(this.state.credentials)
     this.state.credentials.name = ''
     this.state.credentials.password = ''
-    this.setState({
-      clickedLogin: false,
-      credentials: this.state.credentials
-    })
+    setTimeout(() => {
+      this.setState({
+        toggle: !this.state.toggle,
+        clickedLogin: false,
+        credentials: this.state.credentials
+      })
+    }, 5000)
   }
 
   handleSignUp = event => {
-    this.state.credentials.name = ''
-    this.state.credentials.password = ''
-    this.forceUpdate()
+    const credentials = this.state.credentials
+    credentials.name = ''
+    credentials.password = ''
+    this.setState({
+      toggle: !this.state.toggle,
+      credentials: this.state.credentials
+    })
   }
 
   handleUsernameChange = event => {
@@ -44,39 +52,41 @@ class SignIn extends React.Component {
 
   render() {
     if(this.props.active.session){
-      return(<Redirect to='/home' />)
+      return(<Redirect to='/' />)
     } else {
       return (
         <div className={'sign-in-wrapper'}>
           <div className={'sign-in-left-pane'}>
             <center>
-              <Card>
-                <Segment padded>
-                  <Image className={'sign-in-logo'} src={'./bitter-icon.png'} width={50} height={50} />
-                  <Divider horizontal>bitter</Divider>
-                  <br></br>
-                  <Form onSubmit={event => {
-                      if(this.state.clickedLogin){
-                        this.handleLogin(event)
-                      } else {
-                        this.handleSignUp(event)
-                      }
-                    }}>
-                    <Form.Field>
-                      <label>Username</label>
-                      <input placeholder={'Username'} value={this.state.credentials.name} onChange={this.handleUsernameChange}/>
-                    </Form.Field>
-                    <Form.Field>
-                      <label>Password</label>
-                      <input type={'password'} placeholder={'Password'} value={this.state.credentials.password} onChange={this.handlePasswordChange}/>
-                    </Form.Field>
+              <Transition visible={this.state.toggle} animation={'shake'} duration={500}>
+                <Card>
+                  <Segment padded>
+                    <Image className={'sign-in-logo'} src={'./bitter-icon.png'} width={50} height={50} />
+                    <Divider horizontal>bitter</Divider>
                     <br></br>
-                    <Button type={'submit'} color={'yellow'} fluid onClick={() => {this.setState({clickedLogin: true})}}>Login</Button>
-                    <Divider horizontal>or</Divider>
-                    <Button type={'submit'} secondary fluid>Sign Up</Button>
-                  </Form>
-                </Segment>
-              </Card>
+                    <Form onSubmit={event => {
+                        if(this.state.clickedLogin){
+                          this.handleLogin(event)
+                        } else {
+                          this.handleSignUp(event)
+                        }
+                      }}>
+                      <Form.Field>
+                        <label>Username</label>
+                        <input placeholder={'Username'} value={this.state.credentials.name} onChange={this.handleUsernameChange}/>
+                      </Form.Field>
+                      <Form.Field>
+                        <label>Password</label>
+                        <input type={'password'} placeholder={'Password'} value={this.state.credentials.password} onChange={this.handlePasswordChange}/>
+                      </Form.Field>
+                      <br></br>
+                      <Button type={'submit'} color={'yellow'} fluid loading={this.state.clickedLogin} onClick={() => {this.setState({clickedLogin: true})}}>Login</Button>
+                      <Divider horizontal>or</Divider>
+                      <Button type={'submit'} secondary fluid>Sign Up</Button>
+                    </Form>
+                  </Segment>
+                </Card>
+              </Transition>
             </center>
           </div>
           <div className={'sign-in-right-pane'}>
