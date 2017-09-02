@@ -24,12 +24,12 @@ class Post extends React.Component {
 
   render() {
     return (
-      <Transition transitionOnMount={true} animation={'fly up'} duration={1500}>
+      <Transition transitionOnMount={true} animation={'fade'} duration={1500}>
         <div>
           <Feed>
             <Feed.Event>
               <Feed.Label>
-                <img alt='profile-pic' src='./bitter-icon.png' style={{
+                <img alt='profile-pic' src='./test-avatar.png' style={{
                   width: '50px',
                   height: '50px'
                 }}/>
@@ -45,7 +45,7 @@ class Post extends React.Component {
                 <Feed.Meta>
                   <Feed.Like>
                     <Icon name='thumbs down'/>
-                    Post ID: {this.props.postId}
+                    6795469563965 dislikes
                   </Feed.Like>
                 </Feed.Meta>
               </Feed.Content>

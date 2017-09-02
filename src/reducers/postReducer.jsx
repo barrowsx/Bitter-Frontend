@@ -9,6 +9,10 @@ export default function postReducer(state = initialState.posts, action){
       return action.posts
     case types.POST_FETCH_FAILURE:
       return action.posts
+    case types.POSTS_FETCH_SUCCESS:
+      return action.posts
+    case types.POSTS_FETCH_FAILURE:
+      return action.posts
     default:
       return state
   }

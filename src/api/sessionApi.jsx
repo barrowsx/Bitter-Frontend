@@ -1,3 +1,4 @@
+
 class SessionApi {
   static login(credentials) {
     let myHeaders = new Headers()
@@ -9,6 +10,10 @@ class SessionApi {
     })
 
     return fetch(request).then(response => response.json())
+  }
+
+  static logOut(){
+    sessionStorage.clear()
   }
 }
 

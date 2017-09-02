@@ -21,3 +21,10 @@ export function logInUser(credentials){
     })
   }
 }
+
+export function logOutUser(){
+  return dispatch => {
+    sessionApi.logOut()
+    return dispatch(loginFailure())
+  }
+}

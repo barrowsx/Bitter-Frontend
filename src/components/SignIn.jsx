@@ -4,6 +4,7 @@ import {Redirect} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as sessionActions from '../actions/sessionActions'
+import * as userActions from '../actions/userActions'
 
 class SignIn extends React.Component {
 
@@ -51,8 +52,9 @@ class SignIn extends React.Component {
 
 
   render() {
-    if(this.props.active.session){
-      return(<Redirect to='/' />)
+    console.log(this.props)
+    if(this.props.session){
+      return(<Redirect to='/home' />)
     } else {
       return (
         <div className={'sign-in-wrapper'}>
@@ -107,8 +109,9 @@ class SignIn extends React.Component {
 }
 
 function mapStateToProps(state){
-  return{
-    active: state
+  return {
+    session: state.session,
+    user: state.users
   }
 }
 

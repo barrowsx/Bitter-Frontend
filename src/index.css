@@ -63,10 +63,11 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  background-color: rgba(140, 140, 140, 0.45);
 }
 
 .main-page-header {
-  background-color: grey;
+  background-image: linear-gradient(to bottom, rgba(140, 140, 140, 1), rgba(140, 140, 140, 0));
 }
 
 .main-page-pane-wrapper {
@@ -98,17 +99,30 @@
   margin-top: 50px;
 }
 
+.user-card-header {
+  display: flex;
+  min-width: 100%;
+}
+
+.user-card-header-image {
+  flex: 0 0 80px;
+  margin-top: -45px;
+  margin-left: 15px;
+}
+
+.user-card-header-name {
+  flex-grow: 4;
+}
+
 .user-card-footer {
   display: flex;
   min-width: 100%;
 }
 
 .user-card-followers-count {
-  display: table-cell;
-  text-align: left;
+  flex: auto;
 }
 
 .user-card-following-count {
-  display: table-cell;
-  text-align: right;
+  flex: auto;
 }

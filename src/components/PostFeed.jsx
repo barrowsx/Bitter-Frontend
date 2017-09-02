@@ -4,14 +4,21 @@ import Post from './Post'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as postActions from '../actions/postActions'
+import * as userActions from '../actions/userActions'
 
 class PostFeed extends React.Component {
 
-  componentDidMount() {
+  componentWillMount(){
     this.props.actions.fetchPosts()
   }
 
+  componentDidMount(){
+    this.props.actions.clearPosts()
+
+  }
+
   render() {
+    console.log(this.props.posts)
     return (
       <div>
         {(() => {
@@ -57,12 +64,16 @@ class PostFeed extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {posts: state.posts}
+  return {
+    posts: state.posts,
+    user: state.users
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(postActions, dispatch)
+    actions: bindActionCreators(postActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch)
   }
 }
 
