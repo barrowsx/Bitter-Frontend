@@ -9,8 +9,10 @@ import * as userActions from '../actions/userActions'
 class SignIn extends React.Component {
 
   state = {
+    dividerText: 'BITTER',
     toggle: true,
     clickedLogin: false,
+    clickedSignUp: false,
     credentials: {
       name: '',
       password: ''
@@ -18,26 +20,102 @@ class SignIn extends React.Component {
   }
 
   handleLogin = event => {
-    this.props.actions.logInUser(this.state.credentials)
-    this.state.credentials.name = ''
-    this.state.credentials.password = ''
-    setTimeout(() => {
+    if(this.state.credentials.name === '' || this.state.credentials.password === ''){
       this.setState({
+        dividerText: "FIELDS CAN'T BE BLANK",
         toggle: !this.state.toggle,
         clickedLogin: false,
         credentials: this.state.credentials
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            dividerText: 'BITTER'
+          })
+        }, 2000)
       })
-    }, 5000)
+    } else {
+      this.props.actions.logInUser(this.state.credentials)
+      this.state.credentials.name = ''
+      this.state.credentials.password = ''
+      setTimeout(() => {
+        this.setState({
+          dividerText: 'INCORRECT CREDENTIALS',
+          toggle: !this.state.toggle,
+          clickedLogin: false,
+          credentials: this.state.credentials
+        }, () => {
+          setTimeout(() => {
+            this.setState({
+              dividerText: 'BITTER'
+            })
+          }, 2000)
+        })
+      }, 2000)
+    }
   }
 
   handleSignUp = event => {
-    const credentials = this.state.credentials
-    credentials.name = ''
-    credentials.password = ''
-    this.setState({
-      toggle: !this.state.toggle,
-      credentials: this.state.credentials
-    })
+    let credentials = this.state.credentials
+    credentials.password_confirmation = this.state.credentials.password
+    if(this.state.credentials.name === '' || this.state.credentials.password === ''){
+      this.setState({
+        dividerText: "FIELDS CAN'T BE BLANK",
+        toggle: !this.state.toggle,
+        clickedSignUp: false,
+        credentials: this.state.credentials
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            dividerText: 'BITTER'
+          })
+        }, 2000)
+      })
+    } else {
+      this.props.userActions.createUser(credentials)
+      setTimeout(() => {
+        if(this.props.user.length === 0){
+          this.state.credentials.name = ''
+          this.state.credentials.password = ''
+          this.setState({
+            dividerText: 'INCORRECT CREDENTIALS',
+            toggle: !this.state.toggle,
+            clickedSignUp: false,
+            credentials: this.state.credentials
+          }, () => {
+            setTimeout(() => {
+              this.setState({
+                dividerText: 'BITTER'
+              })
+            }, 2000)
+          })
+        } else {
+          if(typeof this.props.user.message === 'string'){
+            this.state.credentials.name = ''
+            this.state.credentials.password = ''
+            this.setState({
+              dividerText: "NAME ALREADY TAKEN",
+              toggle: !this.state.toggle,
+              clickedSignUp: false,
+              credentials: this.state.credentials
+            }, () => {
+              setTimeout(() => {
+                this.setState({
+                  dividerText: 'BITTER'
+                })
+              }, 2000)
+            })
+          } else {
+            this.props.actions.logInUser(credentials)
+            this.state.credentials.name = ''
+            this.state.credentials.password = ''
+            this.setState({
+              clickedSignUp: false,
+              credentials: this.state.credentials
+            })
+          }
+        }
+      }, 2000)
+    }
   }
 
   handleUsernameChange = event => {
@@ -50,9 +128,11 @@ class SignIn extends React.Component {
     this.forceUpdate()
   }
 
+  componentDidMount(){
+    this.props.userActions.clearUserStore()
+  }
 
   render() {
-    console.log(this.props)
     if(this.props.session){
       return(<Redirect to='/home' />)
     } else {
@@ -60,35 +140,35 @@ class SignIn extends React.Component {
         <div className={'sign-in-wrapper'}>
           <div className={'sign-in-left-pane'}>
             <center>
-              <Transition visible={this.state.toggle} animation={'shake'} duration={500}>
-                <Card>
-                  <Segment padded>
-                    <Image className={'sign-in-logo'} src={'./bitter-icon.png'} width={50} height={50} />
-                    <Divider horizontal>bitter</Divider>
+              <Card>
+                <Segment padded>
+                  <Image className={'sign-in-logo'} src={'./bitter-icon.png'} width={50} height={50} />
+                  <Transition visible={this.state.toggle} animation={'flash'} duration={500}>
+                    <Divider horizontal>{this.state.dividerText}</Divider>
+                  </Transition>
+                  <br></br>
+                  <Form onSubmit={event => {
+                      if(this.state.clickedLogin){
+                        this.handleLogin(event)
+                      } else {
+                        this.handleSignUp(event)
+                      }
+                    }}>
+                    <Form.Field>
+                      <label>Username</label>
+                      <input placeholder={'Username'} value={this.state.credentials.name} onChange={this.handleUsernameChange}/>
+                    </Form.Field>
+                    <Form.Field>
+                      <label>Password</label>
+                      <input type={'password'} placeholder={'Password'} value={this.state.credentials.password} onChange={this.handlePasswordChange}/>
+                    </Form.Field>
                     <br></br>
-                    <Form onSubmit={event => {
-                        if(this.state.clickedLogin){
-                          this.handleLogin(event)
-                        } else {
-                          this.handleSignUp(event)
-                        }
-                      }}>
-                      <Form.Field>
-                        <label>Username</label>
-                        <input placeholder={'Username'} value={this.state.credentials.name} onChange={this.handleUsernameChange}/>
-                      </Form.Field>
-                      <Form.Field>
-                        <label>Password</label>
-                        <input type={'password'} placeholder={'Password'} value={this.state.credentials.password} onChange={this.handlePasswordChange}/>
-                      </Form.Field>
-                      <br></br>
-                      <Button type={'submit'} color={'yellow'} fluid loading={this.state.clickedLogin} onClick={() => {this.setState({clickedLogin: true})}}>Login</Button>
-                      <Divider horizontal>or</Divider>
-                      <Button type={'submit'} secondary fluid>Sign Up</Button>
-                    </Form>
-                  </Segment>
-                </Card>
-              </Transition>
+                    <Button type={'submit'} color={'yellow'} fluid loading={this.state.clickedLogin} onClick={() => {this.setState({clickedLogin: true})}}>Login</Button>
+                    <Divider horizontal>or</Divider>
+                    <Button type={'submit'} secondary fluid loading={this.state.clickedSignUp} onClick={() => {this.setState({clickedSignUp: true})}}>Sign Up</Button>
+                  </Form>
+                </Segment>
+              </Card>
             </center>
           </div>
           <div className={'sign-in-right-pane'}>
@@ -117,7 +197,8 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(sessionActions, dispatch)
+    actions: bindActionCreators(sessionActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch)
   }
 }
 

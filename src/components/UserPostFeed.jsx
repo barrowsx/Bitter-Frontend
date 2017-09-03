@@ -1,15 +1,16 @@
 import React from 'react'
 import {Loader} from 'semantic-ui-react'
 import Post from './Post'
+import {withRouter} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as postActions from '../actions/postActions'
 import * as userActions from '../actions/userActions'
 
-class PostFeed extends React.Component {
+class UserPostFeed extends React.Component {
 
   componentWillMount(){
-    this.props.actions.fetchPosts()
+    this.props.actions.fetchUserPosts(this.props.match.params.id)
   }
 
   componentDidMount(){
@@ -18,7 +19,7 @@ class PostFeed extends React.Component {
   }
 
   render() {
-    // console.log(this.props.posts)
+    console.log(this.props.match.params.id)
     return (
       <div>
         {(() => {
@@ -77,4 +78,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostFeed);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserPostFeed));

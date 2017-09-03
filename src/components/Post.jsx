@@ -29,7 +29,7 @@ class Post extends React.Component {
           <Feed>
             <Feed.Event>
               <Feed.Label>
-                <img alt='profile-pic' src='./test-avatar.png' style={{
+                <img alt='profile-pic' src={require('../img/test-avatar.png')} style={{
                   width: '50px',
                   height: '50px'
                 }}/>
@@ -43,10 +43,12 @@ class Post extends React.Component {
                   {this.props.content}
                 </Feed.Extra>
                 <Feed.Meta>
-                  <Feed.Like>
-                    <Icon name='thumbs down'/>
-                    6795469563965 dislikes
-                  </Feed.Like>
+                  {this.props.userId > 0 &&
+                    <Feed.Like>
+                      <Icon name='thumbs down'/>
+                      {this.props.likes} dislikes
+                    </Feed.Like>
+                  }
                 </Feed.Meta>
               </Feed.Content>
             </Feed.Event>

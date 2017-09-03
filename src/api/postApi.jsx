@@ -23,6 +23,24 @@ class PostApi{
            })
   }
 
+  static grabUserPosts(userId){
+    const headers = new Headers(this.requestHeaders())
+    const request = new Request('http://localhost:3000/api/v1/users/' + userId + '/posts', {
+      method: 'GET',
+      headers: headers
+    })
+
+    return fetch(request)
+           .then(response => {
+             if(response.status === 401){
+               sessionStorage.clear()
+               return {error: 'Access Denied. Your session likely expired.'}
+             } else {
+               return response.json()
+             }
+           })
+  }
+
   static grabAllPosts(){
     const headers = new Headers(this.requestHeaders())
     const request = new Request('http://localhost:3000/api/v1/posts', {

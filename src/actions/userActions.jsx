@@ -34,3 +34,12 @@ export function clearUserStore(){
     return dispatch(loadUserSuccess([]))
   }
 }
+
+export function createUser(user){
+  return dispatch => {
+    return UserApi.createUser(user).then(response => {
+      // console.log(response)
+      dispatch(createUserSuccess(response))
+    })
+  }
+}

@@ -6,19 +6,18 @@ import {connect} from 'react-redux'
 import * as postActions from '../actions/postActions'
 import * as userActions from '../actions/userActions'
 
-class PostFeed extends React.Component {
+class AllPostsFeed extends React.Component {
 
   componentWillMount(){
-    this.props.actions.fetchPosts()
+    this.props.actions.fetchAllPosts()
   }
 
   componentDidMount(){
     this.props.actions.clearPosts()
-
   }
 
   render() {
-    // console.log(this.props.posts)
+    console.log(this.props.posts)
     return (
       <div>
         {(() => {
@@ -38,7 +37,7 @@ class PostFeed extends React.Component {
               )
             } else {
               return (this.props.posts.map(post => {
-                return (<Post key={'post-' + post.id} user={post.user} content={post.content} createdAt={post.created_at} postId={post.id} likes={post.likes} userId={post.user_id}/>)
+                return (<Post key={'post-' + post.id} user={post.user} content={post.content} createdAt={post.created_at} postId={post.id} likes={post.likes} userId={1}/>)
               }))
             }
           } else {
@@ -77,4 +76,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostFeed);
+export default connect(mapStateToProps, mapDispatchToProps)(AllPostsFeed);

@@ -126,3 +126,21 @@
 .user-card-following-count {
   flex: auto;
 }
+
+.followed-card-content {
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
+.followed-card-content::-webkit-scrollbar {
+  display: none;
+}
+
+.followers-card-content {
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
+.followers-card-content::-webkit-scrollbar {
+  display: none;
+}
