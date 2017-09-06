@@ -1,4 +1,7 @@
+import React from 'react'
 import {combineReducers} from 'redux'
+import {Redirect} from 'react-router-dom'
+import * as types from '../actions/actionTypes'
 import session from './sessionReducer'
 import users from './userReducer'
 import posts from './postReducer'

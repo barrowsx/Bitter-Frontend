@@ -150,10 +150,10 @@
 }
 
 .user-page-feed {
+  max-height: 90%;
   flex: 1;
   flex-grow: 3;
   overflow-y: auto;
-
 }
 
 .user-page-feed::-webkit-scrollbar {

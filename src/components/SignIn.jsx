@@ -133,7 +133,8 @@ class SignIn extends React.Component {
   }
 
   render() {
-    if(this.props.session){
+    // console.log(this.props)
+    if(!!sessionStorage.jwt){
       return(<Redirect to='/home' />)
     } else {
       return (

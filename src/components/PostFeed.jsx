@@ -16,6 +16,7 @@ class PostFeed extends React.Component {
 
   componentDidMount(){
     this.pollPosts()
+    // this.props.actions.fetchPosts()
   }
 
   render() {

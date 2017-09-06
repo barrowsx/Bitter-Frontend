@@ -21,6 +21,7 @@ class CurrentUserCard extends React.Component {
 
   handleLogOut = () => {
     console.log(this.props)
+    console.log('LOG OUT BUTTON CLICKED HERE')
     this.props.actions.clearUserStore()
     this.props.sessionActions.logOutUser()
   }

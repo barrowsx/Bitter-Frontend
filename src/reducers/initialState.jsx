@@ -1,5 +1,5 @@
 export default {
-  session: !!sessionStorage.jwt,
+  session: false,
   users: [],
   posts: [],
   followers: [],

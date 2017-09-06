@@ -4,8 +4,29 @@ import UserFeed from './UserFeed'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as followingActions from '../actions/followingActions'
+import equal from 'deep-equal'
 
 class FollowedCard extends React.Component {
+
+  shouldComponentUpdate(nextProps, nextState){
+    return !equal(this.props, nextProps)
+  }
+
+  pollCurrentFollowing(){
+    let test
+    if(!!sessionStorage.jwt){
+      // console.log('pollCurrentFollowing fuck you')
+      this.props.actions.loadCurrentFollowing()
+      test = setTimeout(() => this.pollCurrentFollowing(), 5000)
+    } else {
+      clearTimeout(test)
+    }
+  }
+
+  componentDidUpdate(){
+    // console.log('updating FollowedCard')
+    this.pollCurrentFollowing()
+  }
 
   componentDidMount(){
     this.props.actions.loadCurrentFollowing()
@@ -35,7 +56,8 @@ class FollowedCard extends React.Component {
 
 function mapStateToProps(state){
   return {
-    following: state.following
+    following: state.following,
+    session: state.session
   }
 }
 

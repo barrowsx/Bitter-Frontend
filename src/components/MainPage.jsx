@@ -8,11 +8,21 @@ import {Redirect} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as sessionActions from '../actions/sessionActions'
+import equal from 'deep-equal'
 
 class MainPage extends React.Component {
+
+  shouldComponentUpdate(nextProps, nextState){
+    return !equal(nextProps, this.props)
+  }
+
   render() {
-    if(!this.props.active.session){
-      return(<Redirect to='/' />)
+    console.log('main page props', this.props.active)
+    if(!!!sessionStorage.jwt){
+      window.location = 'http://localhost:3001/'
+      return(
+        <h1>hi</h1>
+      )
     } else {
       return (
         <div className={'main-page-wrapper'}>
@@ -33,11 +43,11 @@ class MainPage extends React.Component {
             <div className={'main-page-right-pane'}>
               <center>
                 <div className={'main-page-followers-card'}>
-                  <FollowersCard />
+                  <FollowersCard history={this.props.history} />
                 </div>
                 <br></br>
                 <div className={'main-page-followed-card'}>
-                  <FollowedCard />
+                  <FollowedCard history={this.props.history} />
                 </div>
               </center>
             </div>

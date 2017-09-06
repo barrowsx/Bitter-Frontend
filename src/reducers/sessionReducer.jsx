@@ -6,9 +6,9 @@ import initialState from './initialState'
 export default function sessionReducer(state = initialState.session, action){
   switch(action.type){
     case types.LOG_IN_SUCCESS:
-      return true
+      return !!sessionStorage.jwt
     case types.LOG_IN_FAILURE:
-      return false
+      return !!sessionStorage.jwt
     default:
       return state
   }

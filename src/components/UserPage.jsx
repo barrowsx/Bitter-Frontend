@@ -9,7 +9,7 @@ import * as userActions from '../actions/userActions'
 class UserPage extends React.Component {
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
     return (
       <div className={'main-page-wrapper'}>
         <div className={'user-page-user-info'}>
@@ -30,4 +30,8 @@ class UserPage extends React.Component {
   }
 }
 
-export default UserPage;
+function mapStateToProps(state){
+  return {active: state}
+}
+
+export default connect(mapStateToProps, null)(UserPage);

@@ -14,6 +14,7 @@ class AllPostsFeed extends React.Component {
   }
 
   componentDidMount(){
+    // this.pollAllPosts()
     this.pollAllPosts()
   }
 

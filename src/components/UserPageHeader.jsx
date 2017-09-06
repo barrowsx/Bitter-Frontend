@@ -59,7 +59,6 @@ class UserPageHeader extends React.Component {
     return (
       <center>
         <Card fluid>
-          <Image src={require('../img/sample-cover-cropped.jpg')} fluid />
           <Card.Content>
             <Card.Header>
               <h1>{this.props.user.name}</h1>
