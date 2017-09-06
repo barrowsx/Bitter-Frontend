@@ -1,19 +1,24 @@
 import React from 'react'
 import {Card, Button, Segment, Image} from 'semantic-ui-react'
 import UserPostFeed from './UserPostFeed'
+import UserPageHeader from './UserPageHeader'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import * as userActions from '../actions/userActions'
 
 class UserPage extends React.Component {
 
   render() {
+    // console.log(this.props)
     return (
       <div className={'main-page-wrapper'}>
-        <div className={'main-page-header'}>
-          <center><Image className={'sign-in-logo'} src={require('../img/bitter-icon.png')} width={50} height={50}/></center>
+        <div className={'user-page-user-info'}>
+          <UserPageHeader userId={this.props.match.params} />
         </div>
         <div className={'main-page-pane-wrapper'}>
           <div className={'main-page-left-pane'}>
           </div>
-          <div className={'main-page-feed'}>
+          <div className={'user-page-feed'} style={{overflow: 'auto'}}>
             <Segment>
               <UserPostFeed />
             </Segment>

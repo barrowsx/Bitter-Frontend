@@ -60,6 +60,28 @@ class UserApi {
 
     return fetch(request).then(response => response.json())
   }
+
+  static followUser(user){
+    const myHeaders = this.requestHeaders()
+    const request = new Request('http://localhost:3000/api/v1/users/' + user.id + '/follow', {
+      method: 'POST',
+      headers: myHeaders
+    })
+
+    return fetch(request)
+           .then(response => response.json())
+  }
+
+  static isFollowingUser(user){
+    const myHeaders = this.requestHeaders()
+    const request = new Request('http://localhost:3000/api/v1/users/' + user.id + '/follow', {
+      method: 'GET',
+      headers: myHeaders
+    })
+
+    return fetch(request)
+           .then(response => response.json())
+  }
 }
 
 export default UserApi

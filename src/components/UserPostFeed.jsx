@@ -9,17 +9,16 @@ import * as userActions from '../actions/userActions'
 
 class UserPostFeed extends React.Component {
 
-  componentWillMount(){
+  pollUserPosts(){
     this.props.actions.fetchUserPosts(this.props.match.params.id)
+    setTimeout(this.pollUserPosts.bind(this), 2000)
   }
 
   componentDidMount(){
-    this.props.actions.clearPosts()
-
+    this.pollUserPosts()
   }
 
   render() {
-    console.log(this.props.match.params.id)
     return (
       <div>
         {(() => {
@@ -50,9 +49,6 @@ class UserPostFeed extends React.Component {
                 </center>
                 <center>
                   <h3>{this.props.posts.error}</h3>
-                </center>
-                <center>
-                  <h5>(go log in you mongoloid)</h5>
                 </center>
               </div>
             )

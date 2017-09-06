@@ -1,25 +1,39 @@
 import React from 'react'
-import {Feed, Icon, Transition, Divider} from 'semantic-ui-react'
+import {Feed, Icon, Transition, Divider, Loader} from 'semantic-ui-react'
+import TimeAgo from 'react-timeago'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import * as likeActions from '../actions/likeActions'
+import * as likePostActions from '../actions/likePostActions'
 
 class Post extends React.Component {
 
-  generatePostDate(timestamp) {
-    const months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ]
-    let date = new Date(timestamp)
-    return months[date.getUTCMonth()] + " " + date.getUTCDate() + ", " + date.getUTCFullYear()
+  state = {
+    likes: 0,
+    loading: true
+  }
+
+  likePost = event => {
+    this.setState({
+      loading: true
+    })
+    this.props.likeActions.likePost(this.props.postId)
+    .then(() => {
+      this.setState({
+        likes: this.props.like.likes,
+        loading: false
+      })
+    })
+  }
+
+  componentDidMount(){
+    this.props.likePostActions.loadPostLikes(this.props.postId)
+    .then(() => {
+      this.setState({
+        likes: this.props.likePost.likes,
+        loading: false
+      })
+    })
   }
 
   render() {
@@ -36,17 +50,19 @@ class Post extends React.Component {
               </Feed.Label>
               <Feed.Content>
                 <Feed.Summary>
-                  <Feed.User>{this.props.user}</Feed.User>
-                  <Feed.Date>{this.generatePostDate(this.props.createdAt)}</Feed.Date>
+                  {this.props.userId > 0 ? (<Feed.User href={'/users/' + this.props.userId}>{this.props.user}</Feed.User>) : (<Feed.User>{this.props.user}</Feed.User>)}
+                  {this.props.userId > 0 &&
+                    <Feed.Date><TimeAgo date={this.props.createdAt} /></Feed.Date>
+                  }
                 </Feed.Summary>
                 <Feed.Extra text>
                   {this.props.content}
                 </Feed.Extra>
                 <Feed.Meta>
                   {this.props.userId > 0 &&
-                    <Feed.Like>
+                    <Feed.Like onClick={event => {this.likePost(event)}}>
                       <Icon name='thumbs down'/>
-                      {this.props.likes} dislikes
+                      {this.state.likes} dislikes
                     </Feed.Like>
                   }
                 </Feed.Meta>
@@ -60,4 +76,18 @@ class Post extends React.Component {
   }
 }
 
-export default Post;
+function mapStateToProps(state){
+  return {
+    like: state.likes,
+    likePost: state.likePost
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    likeActions: bindActionCreators(likeActions, dispatch),
+    likePostActions: bindActionCreators(likePostActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post);

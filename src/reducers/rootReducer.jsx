@@ -4,13 +4,21 @@ import users from './userReducer'
 import posts from './postReducer'
 import followers from './followerReducer'
 import following from './followingReducer'
+import likes from './likeReducer'
+import createPost from './createPostReducer'
+import likePost from './likePostReducer'
+import follow from './followReducer'
 
 const rootReducer = combineReducers({
   session,
   users,
   posts,
   followers,
-  following
+  following,
+  likes,
+  createPost,
+  likePost,
+  follow
 })
 
 export default rootReducer

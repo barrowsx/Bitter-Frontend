@@ -3,5 +3,9 @@ export default {
   users: [],
   posts: [],
   followers: [],
-  following: []
+  following: [],
+  follow: {},
+  likes: {},
+  createPost: {},
+  likePost: {}
 }

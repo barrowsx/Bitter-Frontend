@@ -5,16 +5,17 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as postActions from '../actions/postActions'
 import * as userActions from '../actions/userActions'
+import * as likeActions from '../actions/likeActions'
 
 class PostFeed extends React.Component {
 
-  componentWillMount(){
+  pollPosts(){
     this.props.actions.fetchPosts()
+    setTimeout(this.pollPosts.bind(this), 2000)
   }
 
   componentDidMount(){
-    this.props.actions.clearPosts()
-
+    this.pollPosts()
   }
 
   render() {
@@ -38,7 +39,7 @@ class PostFeed extends React.Component {
               )
             } else {
               return (this.props.posts.map(post => {
-                return (<Post key={'post-' + post.id} user={post.user} content={post.content} createdAt={post.created_at} postId={post.id} likes={post.likes} userId={post.user_id}/>)
+                return (<Post key={'post-' + post.id} user={post.user} content={post.content} createdAt={post.created_at} postId={post.id} likes={post.likes} userId={post.user_id} likePost={this.likePost}/>)
               }))
             }
           } else {
@@ -49,9 +50,6 @@ class PostFeed extends React.Component {
                 </center>
                 <center>
                   <h3>{this.props.posts.error}</h3>
-                </center>
-                <center>
-                  <h5>(go log in you mongoloid)</h5>
                 </center>
               </div>
             )
@@ -66,14 +64,16 @@ class PostFeed extends React.Component {
 function mapStateToProps(state) {
   return {
     posts: state.posts,
-    user: state.users
+    user: state.users,
+    like: state.likes
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(postActions, dispatch),
-    userActions: bindActionCreators(userActions, dispatch)
+    userActions: bindActionCreators(userActions, dispatch),
+    likeActions: bindActionCreators(likeActions, dispatch)
   }
 }
 

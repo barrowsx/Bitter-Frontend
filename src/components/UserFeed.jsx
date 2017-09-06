@@ -16,9 +16,9 @@ class UserFeed extends React.Component {
               </Feed.Label>
               <Feed.Content>
                 <Feed.Summary>
-                  <Feed.User>{this.props.user}</Feed.User>
+                  <Feed.User href={'/users/' + this.props.userId}>{this.props.user}</Feed.User>
                 </Feed.Summary>
-                <Feed.Meta>
+                <Feed.Meta as={'string'}>
                   <Icon name='users' /> {this.props.followers}
                   <Icon name='bell' /> {this.props.following}
                 </Feed.Meta>

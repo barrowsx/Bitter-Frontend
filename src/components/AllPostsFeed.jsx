@@ -8,12 +8,13 @@ import * as userActions from '../actions/userActions'
 
 class AllPostsFeed extends React.Component {
 
-  componentWillMount(){
+  pollAllPosts(){
     this.props.actions.fetchAllPosts()
+    setTimeout(this.pollAllPosts.bind(this), 2000)
   }
 
   componentDidMount(){
-    this.props.actions.clearPosts()
+    this.pollAllPosts()
   }
 
   render() {
@@ -37,7 +38,7 @@ class AllPostsFeed extends React.Component {
               )
             } else {
               return (this.props.posts.map(post => {
-                return (<Post key={'post-' + post.id} user={post.user} content={post.content} createdAt={post.created_at} postId={post.id} likes={post.likes} userId={1}/>)
+                return (<Post key={'post-' + post.id} user={post.user} content={post.content} createdAt={post.created_at} postId={post.id} likes={post.likes} userId={post.user_id}/>)
               }))
             }
           } else {

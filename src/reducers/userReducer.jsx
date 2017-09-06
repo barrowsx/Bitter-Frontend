@@ -10,13 +10,6 @@ export default function userReducer(state = initialState.users, action){
       return action.users
     case types.CREATE_USER_SUCCESS:
       return action.user
-    case types.DELETE_USER_SUCCESS:
-      const newState = Object.assign([], state)
-      const indexOfUserToDelete = state.findIndex(user => {
-        return user.id === action.user.id
-      })
-      newState.splice(indexOfUserToDelete, 1)
-      return newState
     default:
       return state
   }

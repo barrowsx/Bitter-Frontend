@@ -23,7 +23,7 @@ class FollowersCard extends React.Component {
           <div className={'followers-card-content'}>
             {this.props.followers.map((follow, index) => {
               return(
-                <UserFeed key={'follower-' + (index + 1)} user={follow.name} followers={follow.followers} following={follow.following} />
+                <UserFeed key={'follower-' + (index + 1)} user={follow.name} followers={follow.followers} following={follow.following} userId={follow.user_id} />
               )
             })}
           </div>
