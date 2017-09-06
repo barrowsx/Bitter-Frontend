@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Button, Segment, Image} from 'semantic-ui-react'
+import {Card, Button, Segment, Image, Loader, Dimmer} from 'semantic-ui-react'
 import PostFeed from './PostFeed'
 import CurrentUserCard from './CurrentUserCard'
 import FollowersCard from './FollowersCard'
@@ -21,7 +21,9 @@ class MainPage extends React.Component {
     if(!!!sessionStorage.jwt){
       window.location = 'https://bitter-negwork.herokuapp.com/'
       return(
-        <h1>hi</h1>
+        <Dimmer active inverted>
+          <Loader size={'massive'}>Loading</Loader>
+        </Dimmer>
       )
     } else {
       return (
