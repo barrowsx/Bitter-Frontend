@@ -19,7 +19,7 @@ class MainPage extends React.Component {
   render() {
     console.log('main page props', this.props.active)
     if(!!!sessionStorage.jwt){
-      window.location = 'http://bitter-negwork.herokuapp.com/'
+      window.location = 'https://bitter-negwork.herokuapp.com/'
       return(
         <h1>hi</h1>
       )
