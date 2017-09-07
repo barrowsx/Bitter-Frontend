@@ -51,9 +51,6 @@ class AllPostsFeed extends React.Component {
                 <center>
                   <h3>{this.props.posts.error}</h3>
                 </center>
-                <center>
-                  <h5>(go log in you mongoloid)</h5>
-                </center>
               </div>
             )
           }

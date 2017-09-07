@@ -7,7 +7,7 @@ class UserApi {
 
   static loadCurrentUser(){
     const myHeaders = this.requestHeaders()
-    const request = new Request('https://bitter-api.herokuapp.com/api/v1/users/current', {
+    const request = new Request('http://localhost:3000/api/v1/users/current', {
       method: 'GET',
       headers: myHeaders
     })
@@ -18,7 +18,7 @@ class UserApi {
 
   static loadCurrentFollowing(){
     const myHeaders = this.requestHeaders()
-    const request = new Request('https://bitter-api.herokuapp.com/api/v1/users/current/following', {
+    const request = new Request('http://localhost:3000/api/v1/users/current/following', {
       method: 'GET',
       headers: myHeaders
     })
@@ -30,7 +30,7 @@ class UserApi {
   static loadCurrentFollowers(){
     // debugger
     const myHeaders = this.requestHeaders()
-    const request = new Request('https://bitter-api.herokuapp.com/api/v1/users/current/followers', {
+    const request = new Request('http://localhost:3000/api/v1/users/current/followers', {
       method: 'GET',
       headers: myHeaders
     })
@@ -41,7 +41,7 @@ class UserApi {
 
   static loadUser(user){
     const myHeaders = this.requestHeaders();
-    const request = new Request('https://bitter-api.herokuapp.com/api/v1/users/' + user.id, {
+    const request = new Request('http://localhost:3000/api/v1/users/' + user.id, {
       method: 'GET',
       headers: myHeaders
     })
@@ -53,7 +53,7 @@ class UserApi {
   static createUser(newUser){
     let myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    const request = new Request('https://bitter-api.herokuapp.com/users', {
+    const request = new Request('http://localhost:3000/users', {
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify({user: newUser})
@@ -64,7 +64,7 @@ class UserApi {
 
   static followUser(user){
     const myHeaders = this.requestHeaders()
-    const request = new Request('https://bitter-api.herokuapp.com/api/v1/users/' + user.id + '/follow', {
+    const request = new Request('http://localhost:3000/api/v1/users/' + user.id + '/follow', {
       method: 'POST',
       headers: myHeaders
     })
@@ -75,7 +75,7 @@ class UserApi {
 
   static isFollowingUser(user){
     const myHeaders = this.requestHeaders()
-    const request = new Request('https://bitter-api.herokuapp.com/api/v1/users/' + user.id + '/follow', {
+    const request = new Request('http://localhost:3000/api/v1/users/' + user.id + '/follow', {
       method: 'GET',
       headers: myHeaders
     })
