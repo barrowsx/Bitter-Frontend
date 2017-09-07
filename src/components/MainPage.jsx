@@ -19,7 +19,7 @@ class MainPage extends React.Component {
   render() {
     console.log('main page props', this.props.active)
     if(!!!sessionStorage.jwt){
-      window.location = 'https://bitter-negwork.herokuapp.com/'
+      window.location = 'http://localhost:3001/'
       return(
         <Dimmer active inverted>
           <Loader size={'massive'}>Loading</Loader>
