@@ -5,6 +5,7 @@ import SignIn from './SignIn'
 import MainPage from './MainPage'
 import AllPosts from './AllPosts'
 import UserPage from './UserPage'
+import WebsocketTest from './WebsocketTest'
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route {...rest} render={props => (
@@ -22,6 +23,7 @@ export default class Routes extends React.Component{
       <Router>
         <div>
           <Route exact path={'/'} component={SignIn} />
+          <PrivateRoute path={'/test'} component={WebsocketTest} />
           <PrivateRoute path={'/home'} component={MainPage} />
           <PrivateRoute path={'/all'} component={AllPosts} />
           <PrivateRoute path={'/users/:id'} component={UserPage} />
