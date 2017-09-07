@@ -58,7 +58,8 @@ class UserPageHeader extends React.Component {
     console.log(this.props)
     return (
       <center>
-        <Card fluid>
+        <Card fluid color={this.state.buttonColor}>
+          <Image src={require('../img/sample-cover.jpg')} fluid />
           <Card.Content>
             <Card.Header>
               <h1>{this.props.user.name}</h1>
