@@ -50,7 +50,7 @@ class SignIn extends React.Component {
             })
           }, 2000)
         })
-      }, 2000)
+      }, 15000)
     }
   }
 
@@ -114,7 +114,7 @@ class SignIn extends React.Component {
             })
           }
         }
-      }, 2000)
+      }, 15000)
     }
   }
 
