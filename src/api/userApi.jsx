@@ -52,7 +52,7 @@ class UserApi {
 
   static loadUserByName(username){
     const myHeaders = this.requestHeaders();
-    const request = new Request('http://localhost:3000/api/v1/' + username, {
+    const request = new Request('https://bitter-api.herokuapp.com/api/v1/' + username, {
       method: 'GET',
       headers: myHeaders
     })
