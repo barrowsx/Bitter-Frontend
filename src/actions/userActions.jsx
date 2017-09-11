@@ -21,6 +21,14 @@ export function loadUser(user){
   }
 }
 
+export function loadUserByName(user){
+  return dispatch => {
+    return UserApi.loadUserByName(user).then(response => {
+      dispatch(loadUserSuccess(response))
+    })
+  }
+}
+
 export function loadCurrentUser(){
   return dispatch => {
     return UserApi.loadCurrentUser().then(response => {

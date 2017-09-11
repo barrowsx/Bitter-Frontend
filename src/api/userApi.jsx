@@ -50,6 +50,17 @@ class UserApi {
           .then(response => response.json())
   }
 
+  static loadUserByName(username){
+    const myHeaders = this.requestHeaders();
+    const request = new Request('http://localhost:3000/api/v1/' + username, {
+      method: 'GET',
+      headers: myHeaders
+    })
+
+    return fetch(request)
+          .then(response => response.json())
+  }
+
   static createUser(newUser){
     let myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
