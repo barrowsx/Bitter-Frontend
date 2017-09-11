@@ -28,6 +28,7 @@ export default class Routes extends React.Component{
           <PrivateRoute path={'/home'} component={MainPage} />
           <PrivateRoute path={'/all'} component={AllPosts} />
           <PrivateRoute path={'/users/:id'} component={UserPage} />
+          <PrivateRoute path={'/:username'} component={UserPageName} />
         </Switch>
       </Router>
     )

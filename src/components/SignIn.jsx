@@ -50,7 +50,7 @@ class SignIn extends React.Component {
             })
           }, 2000)
         })
-      }, 15000)
+      }, 5000)
     }
   }
 
@@ -86,7 +86,7 @@ class SignIn extends React.Component {
               this.setState({
                 dividerText: 'BITTER'
               })
-            }, 10000)
+            }, 2000)
           })
         } else {
           if(typeof this.props.user.message === 'string'){
@@ -114,7 +114,7 @@ class SignIn extends React.Component {
             })
           }
         }
-      }, 15000)
+      }, 10000)
     }
   }
 
