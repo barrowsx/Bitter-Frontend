@@ -11,7 +11,6 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = configureStore()
-
 // store.dispatch(loadUsers())
 
 ReactDOM.render(

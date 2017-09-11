@@ -27,6 +27,7 @@ class MainPage extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     if (!!!sessionStorage.jwt) {
       window.location = 'https://bitter-negwork.herokuapp.com/'
       return (

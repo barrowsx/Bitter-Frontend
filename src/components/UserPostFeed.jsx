@@ -10,7 +10,7 @@ import * as userActions from '../actions/userActions'
 class UserPostFeed extends React.Component {
 
   pollUserPosts(){
-    this.props.actions.fetchUserPosts(this.props.match.params.id)
+    this.props.actions.fetchUserPosts(this.props.user.id)
     setTimeout(this.pollUserPosts.bind(this), 2000)
   }
 
@@ -22,6 +22,7 @@ class UserPostFeed extends React.Component {
     return (
       <div>
         {(() => {
+          console.log(this.props.posts)
           if (Object.prototype.toString.call(this.props.posts) === '[object Array]') {
             if (this.props.posts.length === 0) {
               return (
@@ -41,6 +42,19 @@ class UserPostFeed extends React.Component {
                 return (<Post key={'post-' + post.id} user={post.user} content={post.content} createdAt={post.created_at} postId={post.id} likes={post.likes} userId={post.user_id}/>)
               }))
             }
+          } else if(this.props.posts.status === 404){
+            return (
+              <div className={'feed-loading'}>
+                <center>
+                  <h5>wait for the posts to load...</h5>
+                </center>
+                <br></br>
+                <Loader active inline='centered'/>
+                <center>
+                  <h6>or don't, i don't really care...</h6>
+                </center>
+              </div>
+            )
           } else {
             return (
               <div>
