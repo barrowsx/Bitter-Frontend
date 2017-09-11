@@ -101,7 +101,7 @@ class CurrentUserCard extends React.Component {
                   }}/>
                 </div>
                 <div className={'user-card-header-name'}>
-                  <h1>{this.props.user.name}</h1>
+                  <h1><a href={'/users/' + this.props.user.id} style={{color: 'black'}}>{this.props.user.name}</a></h1>
                 </div>
               </div>
             </Card.Header>
