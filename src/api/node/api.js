@@ -1,8 +1,8 @@
 import openSocket from 'socket.io-client'
 import UserApi from '../userApi'
 
-// const socket = openSocket('https://bitter-node-api.herokuapp.com')
-const socket = openSocket('http://localhost:3002')
+const socket = openSocket('https://bitter-node-api.herokuapp.com')
+// const socket = openSocket('http://localhost:3002')
 
 function createChat(user, currentUser){
   let numArray = [user, currentUser]
