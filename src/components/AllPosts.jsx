@@ -2,16 +2,27 @@ import React from 'react'
 import {Card, Button, Segment, Image, Icon, Sidebar, Menu} from 'semantic-ui-react'
 import AllPostsFeed from './AllPostsFeed'
 import equal from 'deep-equal'
+import SocketTest from './SocketTest'
+import {TitleBar} from 'react-desktop/windows'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 class AllPosts extends React.Component {
 
   state = {
-    visible: false
+    visible: false,
+    chatVisible: false
   }
 
   toggleVisibility = () => {
     this.setState({
       visible: !this.state.visible
+    })
+  }
+
+  toggleChatVisibility = () => {
+    this.setState({
+      chatVisible: !this.state.chatVisible
     })
   }
 
@@ -39,6 +50,14 @@ class AllPosts extends React.Component {
             </div>
             <div className={'main-page-pane-wrapper'}>
               <div className={'main-page-left-pane'}>
+                <center>
+                  <div style={{position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)', zIndex: 10}}>
+                    <TitleBar title={'bitter chat'} controls isMaximized={this.state.chatVisible} onMinimizeClick={() => {this.setState({chatVisible: false})}} onMaximizeClick={this.toggleChatVisibility} onRestoreDownClick={() => {this.setState({chatVisible: false})}} />
+                    {this.state.chatVisible &&
+                      <SocketTest />
+                    }
+                  </div>
+                </center>
               </div>
               <div className={'main-page-feed'}>
                 <Segment>
@@ -55,4 +74,8 @@ class AllPosts extends React.Component {
   }
 }
 
-export default AllPosts;
+function mapStateToProps(state){
+  return {chat: state.chat}
+}
+
+export default connect(mapStateToProps, null)(AllPosts);

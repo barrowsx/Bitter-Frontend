@@ -11,6 +11,9 @@ import likes from './likeReducer'
 import createPost from './createPostReducer'
 import likePost from './likePostReducer'
 import follow from './followReducer'
+import currentUser from './currentUserReducer'
+import chat from './chatReducer'
+import rehydrate from './rehydrateReducer'
 
 const rootReducer = combineReducers({
   session,
@@ -21,7 +24,10 @@ const rootReducer = combineReducers({
   likes,
   createPost,
   likePost,
-  follow
+  follow,
+  currentUser,
+  chat,
+  rehydrate
 })
 
 export default rootReducer

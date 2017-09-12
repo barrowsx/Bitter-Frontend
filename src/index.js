@@ -7,16 +7,14 @@ import Routes from './components/Routes'
 // import {loadUsers} from './actions/userActions'
 // import MainPage from './components/MainPage'
 import './index.css';
-// import App from './App';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = configureStore()
 // store.dispatch(loadUsers())
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Routes />
-  </Provider>,
+  <App />,
 
   // <MainPage />,
   document.getElementById('root'));

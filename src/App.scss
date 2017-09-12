@@ -1,0 +1,260 @@
+body {
+  overflow-y: hidden;
+}
+
+.sign-in-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: table;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.sign-in-left-pane {
+  z-index: 10;
+  width: 50%;
+  min-height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.sign-in-logo {
+  transform: rotate(7deg);
+}
+
+.sign-in-right-pane {
+  vertical-align: middle;
+  width: 50%;
+  min-height: 100%;
+  display: table-cell;
+  background-color: none;
+}
+
+.sign-in-right-pane-image {
+  position: fixed;
+  margin-top: -48vh;
+  min-width: 55vw;
+  min-height: 110vh;
+  color: #FFFFFF;
+  background-image: linear-gradient(to right, rgba(140, 140, 140, 1), rgba(140, 140, 140, 0.6)), url('./img/depressed-crop.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(2px);
+}
+
+.sign-in-right-pane-text {
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+  z-index: 10;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+  min-height: 100%;
+  background-color: none;
+  color: #FFFFFF;
+}
+
+.main-page-wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: rgba(140, 140, 140, 0.45);
+}
+
+.main-page-header {
+  background-image: linear-gradient(to bottom, rgba(140, 140, 140, 1), rgba(140, 140, 140, 0));
+}
+
+.main-page-pane-wrapper {
+  display: flex;
+  height: 94.8vh;
+  width: inherit;
+}
+
+.main-page-left-pane {
+  flex: 1;
+  flex-grow: 2;
+  margin-top: 50px;
+  position: relative;
+}
+
+.main-page-feed {
+  flex: 1;
+  flex-grow: 3;
+  overflow-y: auto;
+
+}
+
+.main-page-feed::-webkit-scrollbar {
+  display: none;
+}
+
+.main-page-right-pane {
+  flex: 1;
+  flex-grow: 2;
+  margin-top: 50px;
+}
+
+.user-card-header {
+  display: flex;
+  min-width: 100%;
+}
+
+.user-card-header-image {
+  flex: 0 0 80px;
+  margin-top: -45px;
+  margin-left: 15px;
+}
+
+.user-card-header-name {
+  flex-grow: 4;
+}
+
+.user-card-footer {
+  display: flex;
+  min-width: 100%;
+}
+
+.user-card-followers-count {
+  flex: auto;
+}
+
+.user-card-following-count {
+  flex: auto;
+}
+
+.followed-card-content {
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
+.followed-card-content::-webkit-scrollbar {
+  display: none;
+}
+
+.followers-card-content {
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
+.followers-card-content::-webkit-scrollbar {
+  display: none;
+}
+
+.user-page-header {
+  margin-top: -14px;
+  margin-right: -14px;
+  margin-left: -14px;
+  background-image: linear-gradient(to bottom, rgba(140, 140, 140, 1), rgba(140, 140, 140, 0));
+}
+
+.user-page-user-info {
+  min-width: 100vw;
+}
+
+.user-page-feed {
+  max-height: 100%;
+  flex: 1;
+  flex-grow: 3;
+  /*overflow-y: auto;*/
+}
+
+.user-page-feed-actual {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.user-page-feed-actual::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+  The following CSS that I'm using for the chat bubbles was made by Samuel Kraft
+  You can find the CSS here: https://codepen.io/samuelkraft/pen/Farhl
+*/
+
+section {
+  overflow-x: hidden;
+  font-family: "Helvetica Neue";
+	font-size: 13px;
+	font-weight: normal;
+	max-width: 290px;
+	margin: 5px auto;
+
+	div {
+		max-width: 250px;
+		word-wrap: break-word;
+		margin-bottom: 5px;
+    line-height: 6px;
+	}
+}
+
+.clear {clear: both}
+.from-me {
+	position:relative;
+	padding:2px 4px;
+	color:white;
+	background:#2185D0;
+	border-radius:5px;
+	float: right;
+
+	&:before {
+		content:"";
+		position:absolute;
+		z-index:-1;
+		bottom:-2px;
+		right:-7px;
+		height:20px;
+		// border-right:20px solid #0B93F6;
+		border-bottom-left-radius: 16px 14px;
+		-webkit-transform:translate(0, -2px);
+	}
+
+	&:after {
+		content:"";
+		position:absolute;
+		z-index:1;
+		bottom:-2px;
+		right:-56px;
+		width:26px;
+		height:20px;
+		background:#EDEEEF;
+		border-bottom-left-radius: 10px;
+		-webkit-transform:translate(-30px, -2px);
+	}
+}
+.from-them {
+	position:relative;
+	padding:2px 4px;
+	background:#D5D5DA;
+	border-radius:5px;
+	color: black;
+  float: left;
+
+	&:before {
+		content:"";
+		position:absolute;
+		z-index:2;
+		bottom:-2px;
+		left:-7px;
+		height:20px;
+		// border-left:20px solid #E5E5EA;
+		border-bottom-right-radius: 16px 14px;
+		-webkit-transform:translate(0, -2px);
+	}
+
+	&:after {
+		content:"";
+		position:absolute;
+		z-index:3;
+		bottom:-2px;
+		left:4px;
+		width:26px;
+		height:20px;
+		background:#EDEEEF;
+		border-bottom-right-radius: 10px;
+		-webkit-transform:translate(-30px, -2px);
+	}
+}

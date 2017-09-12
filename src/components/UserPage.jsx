@@ -6,16 +6,25 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as userActions from '../actions/userActions'
 import equal from 'deep-equal'
+import SocketTest from './SocketTest'
+import {TitleBar} from 'react-desktop/windows'
 
 class UserPage extends React.Component {
 
   state = {
-    visible: false
+    visible: false,
+    chatVisible: false
   }
 
   toggleVisibility = () => {
     this.setState({
       visible: !this.state.visible
+    })
+  }
+
+  toggleChatVisibility = () => {
+    this.setState({
+      chatVisible: !this.state.chatVisible
     })
   }
 
@@ -46,6 +55,14 @@ class UserPage extends React.Component {
             </div>
             <div className={'main-page-pane-wrapper'}>
               <div className={'main-page-left-pane'}>
+                <center>
+                  <div style={{position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)', zIndex: 10}}>
+                    <TitleBar title={'bitter chat'} controls isMaximized={this.state.chatVisible} onMinimizeClick={() => {this.setState({chatVisible: false})}} onMaximizeClick={this.toggleChatVisibility} onRestoreDownClick={() => {this.setState({chatVisible: false})}} />
+                    {this.state.chatVisible &&
+                      <SocketTest />
+                    }
+                  </div>
+                </center>
               </div>
               <div className={'user-page-feed'}>
                 <Segment>

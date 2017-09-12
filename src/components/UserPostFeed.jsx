@@ -22,7 +22,6 @@ class UserPostFeed extends React.Component {
     return (
       <div>
         {(() => {
-          console.log(this.props.posts)
           if (Object.prototype.toString.call(this.props.posts) === '[object Array]') {
             if (this.props.posts.length === 0) {
               return (

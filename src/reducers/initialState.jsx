@@ -7,5 +7,8 @@ export default {
   follow: {},
   likes: {},
   createPost: {},
-  likePost: {}
+  likePost: {},
+  currentUser: {},
+  chat: '',
+  rehydrate: {}
 }

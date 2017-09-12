@@ -9,16 +9,29 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as sessionActions from '../actions/sessionActions'
 import equal from 'deep-equal'
+import SocketTest from './SocketTest'
+import {TitleBar} from 'react-desktop/windows'
+import * as currentUserActions from '../actions/currentUserActions'
 
 class MainPage extends React.Component {
+  constructor(props){
+    super(props)
 
-  state = {
-    visible: false
+    this.state = {
+      visible: false,
+      chatVisible: false
+    }
   }
 
   toggleVisibility = () => {
     this.setState({
       visible: !this.state.visible
+    })
+  }
+
+  toggleChatVisibility = () => {
+    this.setState({
+      chatVisible: !this.state.chatVisible
     })
   }
 
@@ -60,6 +73,15 @@ class MainPage extends React.Component {
                     <center>
                       <CurrentUserCard/>
                     </center>
+                    <br></br>
+                    <center>
+                      <div style={{position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)', zIndex: 10}}>
+                        <TitleBar title={'bitter chat'} controls isMaximized={this.state.chatVisible} onMinimizeClick={() => {this.setState({chatVisible: false})}} onMaximizeClick={this.toggleChatVisibility} onRestoreDownClick={() => {this.setState({chatVisible: false})}} />
+                        {this.state.chatVisible &&
+                          <SocketTest />
+                        }
+                      </div>
+                    </center>
                   </div>
                   <div className={'main-page-feed'}>
                     <Segment>
@@ -94,7 +116,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(sessionActions, dispatch)
+    actions: bindActionCreators(sessionActions, dispatch),
+    currentUserActions: bindActionCreators(currentUserActions, dispatch)
   }
 }
 

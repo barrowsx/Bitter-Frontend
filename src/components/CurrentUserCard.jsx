@@ -3,6 +3,7 @@ import {Card, Button, Segment, Image, Icon, Modal, Form, Transition} from 'seman
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as userActions from '../actions/userActions'
+import * as currentUserActions from '../actions/currentUserActions'
 import * as sessionActions from '../actions/sessionActions'
 import * as createPostActions from '../actions/createPostActions'
 
@@ -22,7 +23,7 @@ class CurrentUserCard extends React.Component {
   handleLogOut = () => {
     console.log(this.props)
     console.log('LOG OUT BUTTON CLICKED HERE')
-    this.props.actions.clearUserStore()
+    this.props.userActions.clearUserStore()
     this.props.sessionActions.logOutUser()
   }
 
@@ -67,7 +68,7 @@ class CurrentUserCard extends React.Component {
   }
 
   render() {
-    // console.log(this.props)
+    console.log('CurrentUserCard', this.props)
     return(
       <div>
         <Modal open={this.state.visible} onClose={this.closeAndClearModal} dimmer={'blurring'} size={'tiny'}>
@@ -125,14 +126,15 @@ class CurrentUserCard extends React.Component {
 }
 
 function mapStateToProps(state){
-  return {user: state.users, result: state.createPost}
+  return {user: state.currentUser, result: state.createPost}
 }
 
 function mapDispatchToProps(dispatch){
   return {
-    actions: bindActionCreators(userActions, dispatch),
+    actions: bindActionCreators(currentUserActions, dispatch),
     sessionActions: bindActionCreators(sessionActions, dispatch),
-    postActions: bindActionCreators(createPostActions, dispatch)
+    postActions: bindActionCreators(createPostActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch)
   }
 }
 

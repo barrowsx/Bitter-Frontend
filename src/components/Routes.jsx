@@ -21,16 +21,19 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 export default class Routes extends React.Component{
   render(){
     return(
-      <Router>
-        <Switch>
-          <Route exact path={'/'} component={SignIn} />
-          <PrivateRoute path={'/chat'} component={SocketTest} />
-          <PrivateRoute path={'/home'} component={MainPage} />
-          <PrivateRoute path={'/all'} component={AllPosts} />
-          <PrivateRoute path={'/users/:id'} component={UserPage} />
-          <PrivateRoute path={'/:username'} component={UserPageName} />
-        </Switch>
-      </Router>
+      <div>
+        <Router>
+          <Switch>
+            <Route exact path={'/'} component={SignIn} />
+            // <PrivateRoute path={'/chat'} component={SocketTest} />
+            <PrivateRoute path={'/home'} component={MainPage} />
+            // <PrivateRoute path={'/home'} component={SocketTest} />
+            <PrivateRoute path={'/all'} component={AllPosts} />
+            <PrivateRoute path={'/users/:id'} component={UserPage} />
+            // <PrivateRoute path={'/:username'} component={UserPageName} />
+          </Switch>
+        </Router>
+      </div>
     )
   }
 }
