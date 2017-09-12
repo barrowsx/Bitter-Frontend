@@ -7,7 +7,7 @@ class PostApi{
 
   static grabPosts(){
     const headers = new Headers(this.requestHeaders())
-    const request = new Request('http://localhost:3000/api/v1/users/current/following_posts', {
+    const request = new Request('https://bitter-api.herokuapp.com/api/v1/users/current/following_posts', {
       method: 'GET',
       headers: headers
     })
@@ -25,7 +25,7 @@ class PostApi{
 
   static grabUserPosts(userId){
     const headers = new Headers(this.requestHeaders())
-    const request = new Request('http://localhost:3000/api/v1/users/' + userId + '/posts', {
+    const request = new Request('https://bitter-api.herokuapp.com/api/v1/users/' + userId + '/posts', {
       method: 'GET',
       headers: headers
     })
@@ -43,7 +43,7 @@ class PostApi{
 
   static grabAllPosts(){
     const headers = new Headers(this.requestHeaders())
-    const request = new Request('http://localhost:3000/api/v1/posts', {
+    const request = new Request('https://bitter-api.herokuapp.com/api/v1/posts', {
       method: 'GET',
       headers: headers
     })
@@ -62,7 +62,7 @@ class PostApi{
 
   static likePost(postId){
     const headers = new Headers(this.requestHeaders())
-    const request = new Request('http://localhost:3000/api/v1/posts/' + postId + '/like', {
+    const request = new Request('https://bitter-api.herokuapp.com/api/v1/posts/' + postId + '/like', {
       method: 'POST',
       headers: headers
     })
@@ -80,7 +80,7 @@ class PostApi{
 
   static grabPostLikes(postId){
     const headers = new Headers(this.requestHeaders())
-    const request = new Request('http://localhost:3000/api/v1/posts/' + postId + '/like', {
+    const request = new Request('https://bitter-api.herokuapp.com/api/v1/posts/' + postId + '/like', {
       method: 'GET',
       headers: headers
     })
@@ -99,7 +99,7 @@ class PostApi{
   static createPost(content){
     let headers = new Headers(this.requestHeaders())
     headers.append('Content-Type', 'application/json')
-    const request = new Request('http://localhost:3000/api/v1/posts', {
+    const request = new Request('https://bitter-api.herokuapp.com/api/v1/posts', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify({user: content})

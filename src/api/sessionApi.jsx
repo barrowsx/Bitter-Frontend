@@ -3,7 +3,7 @@ class SessionApi {
   static login(credentials) {
     let myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    const request = new Request('http://localhost:3000/login', {
+    const request = new Request('https://bitter-api.herokuapp.com/login', {
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify({auth: credentials})

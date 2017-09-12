@@ -37,11 +37,11 @@ class UserPage extends React.Component {
     return (
       <Sidebar.Pushable as={Segment}>
         <Sidebar as={Menu} animation={'push'} direction={'top'} visible={this.state.visible} inverted>
-          <Menu.Item name='home' onClick={() => {window.location = 'http://localhost:3001/home'}}>
+          <Menu.Item name='home' onClick={() => {window.location = 'https://bitter-negwork.herokuapp.com/home'}}>
             <Icon name='home' />
             Home
           </Menu.Item>
-          <Menu.Item name='users' onClick={() => {window.location = 'http://localhost:3001/all'}}>
+          <Menu.Item name='users' onClick={() => {window.location = 'https://bitter-negwork.herokuapp.com/all'}}>
             <Icon name='users' />
             All Cries
           </Menu.Item>

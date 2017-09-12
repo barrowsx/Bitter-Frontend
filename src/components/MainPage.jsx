@@ -42,7 +42,7 @@ class MainPage extends React.Component {
   render() {
     console.log(this.props)
     if (!!!sessionStorage.jwt) {
-      window.location = 'http://localhost:3001/'
+      window.location = 'https://bitter-negwork.herokuapp.com/'
       return (
         <Dimmer active inverted>
           <Loader size={'massive'}>Loading</Loader>
@@ -57,7 +57,7 @@ class MainPage extends React.Component {
               <Icon name='home' />
               Home
             </Menu.Item>
-            <Menu.Item name='users' onClick={() => {window.location = 'http://localhost:3001/all'}}>
+            <Menu.Item name='users' onClick={() => {window.location = 'https://bitter-negwork.herokuapp.com/all'}}>
               <Icon name='users' />
               All Cries
             </Menu.Item>

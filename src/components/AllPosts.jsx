@@ -34,7 +34,7 @@ class AllPosts extends React.Component {
     return (
       <Sidebar.Pushable as={Segment}>
         <Sidebar as={Menu} animation={'push'} direction={'top'} visible={this.state.visible} inverted>
-          <Menu.Item name='home' onClick={() => {window.location = 'http://localhost:3001/home'}}>
+          <Menu.Item name='home' onClick={() => {window.location = 'https://bitter-negwork.herokuapp.com/home'}}>
             <Icon name='home' />
             Home
           </Menu.Item>
