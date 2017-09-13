@@ -12,14 +12,21 @@ import equal from 'deep-equal'
 import SocketTest from './SocketTest'
 import {TitleBar} from 'react-desktop/windows'
 import * as currentUserActions from '../actions/currentUserActions'
+import * as chatApi from '../api/node/api'
 
 class MainPage extends React.Component {
   constructor(props){
     super(props)
 
+    chatApi.onMessage((message) => {
+      if(message.user !== this.props.active.currentUser.name){
+        alert(this.props.active.chat)
+      }
+    })
+
     this.state = {
       visible: false,
-      chatVisible: false
+      chatVisible: false,
     }
   }
 
@@ -31,8 +38,15 @@ class MainPage extends React.Component {
 
   toggleChatVisibility = () => {
     this.setState({
-      chatVisible: !this.state.chatVisible
+      chatVisible: !this.state.chatVisible,
     })
+  }
+
+  parseChatName = () => {
+    let arr = this.props.active.chat.split('_')
+    if(arr[0] === this.props.active.currentUser.id){
+
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -74,14 +88,12 @@ class MainPage extends React.Component {
                       <CurrentUserCard/>
                     </center>
                     <br></br>
-                    <center>
-                      <div style={{position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)', zIndex: 10}}>
-                        <TitleBar title={'bitter chat'} controls isMaximized={this.state.chatVisible} onMinimizeClick={() => {this.setState({chatVisible: false})}} onMaximizeClick={this.toggleChatVisibility} onRestoreDownClick={() => {this.setState({chatVisible: false})}} />
+                      <div style={{position: 'absolute', bottom: 0, marginLeft: '5.65vw', zIndex: 10}}>
+                        <TitleBar title={'bitter chat'} controls isMaximized={this.state.chatVisible} onMinimizeClick={() => { this.setState({ chatVisible: false }) }} onMaximizeClick={this.toggleChatVisibility} onRestoreDownClick={() => { this.setState({ chatVisible: false }) }} onCloseClick={() => { this.setState({ chatVisible: false }) }} />
                         {this.state.chatVisible &&
                           <SocketTest />
                         }
                       </div>
-                    </center>
                   </div>
                   <div className={'main-page-feed'}>
                     <Segment>

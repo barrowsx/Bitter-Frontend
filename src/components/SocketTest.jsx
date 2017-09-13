@@ -14,7 +14,6 @@ class SocketTest extends React.Component {
     super(props)
 
     loadChat((message) => {
-      // let chat = message.user + ': ' + message.content
       let sender = ''
       if(message.user !== this.props.user.name){
         sender = 'from-them'
@@ -34,6 +33,7 @@ class SocketTest extends React.Component {
     })
 
     onMessage((message) => {
+      console.log(message)
       let audio = document.getElementById('audio')
       let sender = ''
       if(message.user !== this.props.user.name){
@@ -65,6 +65,11 @@ class SocketTest extends React.Component {
     } else if(!!this.props.chat) {
       this.props.chatActions.joinChat(this.props.chat)
     }
+    this.scrollToBottom()
+  }
+
+  componentDidUpdate(){
+    this.scrollToBottom()
   }
 
   updateMessage = event => {
@@ -81,25 +86,33 @@ class SocketTest extends React.Component {
     })
   }
 
+  scrollToBottom = () => {
+    this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight
+  }
+
   render(){
     console.log(this.props)
     return (
-      <Card style={{minHeight: '30vh', maxHeight: '30vh', marginTop: 0, position: 'relative', backgroundColor: '#EDEEEF'}}>
+      <Card style={{minHeight: '30vh', maxHeight: '30vh', minWidth: '290px', marginTop: 0, position: 'relative', backgroundColor: '#EDEEEF'}}>
         <audio id={'audio'} src={require('../img/bing.ogg')}></audio>
-        <div style={{minWidth: '100%', minHeight: '86.5%', maxHeight: '86.5%', overflowY: 'auto', position: 'absolute'}}>
+        <div style={{ minWidth: '100%', minHeight: '86.5%', maxHeight: '86.5%', overflowY: 'auto', position: 'absolute' }} ref={el => { this.messagesEnd = el }}>
           <section>
-            {this.state.message.length !== 0 &&
-              this.state.message.map((element, i) => {
-                return (
-                  <div key={'key-' + i} id={'chat-container-div'}>
-                    <div className={element.sender}>
-                      <p>{element.content}</p>
+            <center>
+              {this.state.message.length !== 0 &&
+                this.state.message.map((element, i) => {
+                  return (
+                    <div key={'key-' + i} id={'chat-container-div'}>
+                      <div className={element.sender}>
+                        <p>{element.content}</p>
+                      </div>
+                      <div className={"clear"}></div>
                     </div>
-                    <div className={"clear"}></div>
-                  </div>
-                )
-              })
-            }
+                  )
+                })
+              }
+              </center>
+            <div style={{float: "left", clear: "both"}}>
+            </div>
           </section>
         </div>
         <Form onSubmit={this.submitMessage} style={{minHeight: '13.5%', maxHeight: '13.5%', minWidth: '100%', position: 'absolute', bottom: 0}}>

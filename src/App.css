@@ -1,6 +1,3 @@
-body {
-  overflow-y: hidden; }
-
 .sign-in-wrapper {
   width: 100%;
   min-height: 100vh;
@@ -13,6 +10,9 @@ body {
   min-height: 100%;
   display: table-cell;
   vertical-align: middle; }
+
+.actual-sign-in-logo {
+  transform: rotate(7deg); }
 
 .sign-in-logo {
   transform: rotate(7deg); }
@@ -62,8 +62,7 @@ body {
 .main-page-left-pane {
   flex: 1;
   flex-grow: 2;
-  margin-top: 50px;
-  position: relative; }
+  margin-top: 50px; }
 
 .main-page-feed {
   flex: 1;
@@ -137,8 +136,8 @@ body {
   display: none; }
 
 /*
-  The following CSS that I'm using for the chat bubbles was made by Samuel Kraft
-  You can find the CSS here: https://codepen.io/samuelkraft/pen/Farhl
+  The following SCSS that I'm using for the chat bubbles was made by Samuel Kraft
+  You can find the SCSS here: https://codepen.io/samuelkraft/pen/Farhl
 */
 section {
   overflow-x: hidden;
@@ -148,7 +147,7 @@ section {
   max-width: 290px;
   margin: 5px auto; }
   section div {
-    max-width: 250px;
+    max-width: 260px;
     word-wrap: break-word;
     margin-bottom: 5px;
     line-height: 6px; }
@@ -158,10 +157,10 @@ section {
 
 .from-me {
   position: relative;
-  padding: 2px 4px;
+  padding: 4px 8px;
   color: white;
   background: #2185D0;
-  border-radius: 5px;
+  border-radius: 10px;
   float: right; }
   .from-me:before {
     content: "";
@@ -186,9 +185,9 @@ section {
 
 .from-them {
   position: relative;
-  padding: 2px 4px;
+  padding: 4px 8px;
   background: #D5D5DA;
-  border-radius: 5px;
+  border-radius: 10px;
   color: black;
   float: left; }
   .from-them:before {

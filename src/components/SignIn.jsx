@@ -143,7 +143,7 @@ class SignIn extends React.Component {
             <center>
               <Card>
                 <Segment padded>
-                  <Image className={'sign-in-logo'} src={'./bitter-icon.png'} width={50} height={50} />
+                  <Image className={'actual-sign-in-logo'} src={'./bitter-icon.png'} width={50} height={50} />
                   <Transition visible={this.state.toggle} animation={'flash'} duration={500}>
                     <Divider horizontal>{this.state.dividerText}</Divider>
                   </Transition>

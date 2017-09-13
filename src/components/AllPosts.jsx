@@ -46,13 +46,13 @@ class AllPosts extends React.Component {
         <Sidebar.Pusher>
           <div className={'main-page-wrapper'}>
             <div className={'main-page-header'}>
-              <center><Image className={'sign-in-logo'} src='./bitter-icon.png' width={50} height={50} onClick={this.toggleVisibility}/></center>
+              <center><Image className={'sign-in-logo'} src={require('../img/bitter-icon.png')} width={50} height={50} onClick={this.toggleVisibility}/></center>
             </div>
             <div className={'main-page-pane-wrapper'}>
               <div className={'main-page-left-pane'}>
                 <center>
                   <div style={{position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)', zIndex: 10}}>
-                    <TitleBar title={'bitter chat'} controls isMaximized={this.state.chatVisible} onMinimizeClick={() => {this.setState({chatVisible: false})}} onMaximizeClick={this.toggleChatVisibility} onRestoreDownClick={() => {this.setState({chatVisible: false})}} />
+                    <TitleBar title={'bitter chat'} controls isMaximized={this.state.chatVisible} onMinimizeClick={() => { this.setState({ chatVisible: false }) }} onMaximizeClick={this.toggleChatVisibility} onRestoreDownClick={() => { this.setState({ chatVisible: false }) }} onCloseClick={() => { this.setState({ chatVisible: false }) }} />
                     {this.state.chatVisible &&
                       <SocketTest />
                     }
