@@ -51,7 +51,7 @@ class AllPosts extends React.Component {
             <div className={'main-page-pane-wrapper'}>
               <div className={'main-page-left-pane'}>
                 <center>
-                  <div style={{position: 'absolute', bottom: 0, left: '50%', transform: 'translate(-50%, 0)', zIndex: 10}}>
+                  <div style={{ position: 'absolute', bottom: 0, marginLeft: '5.65vw', zIndex: 10 }}>
                     <TitleBar title={'bitter chat'} controls isMaximized={this.state.chatVisible} onMinimizeClick={() => { this.setState({ chatVisible: false }) }} onMaximizeClick={this.toggleChatVisibility} onRestoreDownClick={() => { this.setState({ chatVisible: false }) }} onCloseClick={() => { this.setState({ chatVisible: false }) }} />
                     {this.state.chatVisible &&
                       <SocketTest />
