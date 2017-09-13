@@ -18,12 +18,6 @@ class MainPage extends React.Component {
   constructor(props){
     super(props)
 
-    chatApi.onMessage((message) => {
-      if(message.user !== this.props.active.currentUser.name){
-        alert(this.props.active.chat)
-      }
-    })
-
     this.state = {
       visible: false,
       chatVisible: false,
@@ -40,13 +34,6 @@ class MainPage extends React.Component {
     this.setState({
       chatVisible: !this.state.chatVisible,
     })
-  }
-
-  parseChatName = () => {
-    let arr = this.props.active.chat.split('_')
-    if(arr[0] === this.props.active.currentUser.id){
-
-    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
