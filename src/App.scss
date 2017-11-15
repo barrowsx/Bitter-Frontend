@@ -1,16 +1,20 @@
 .sign-in-wrapper {
   width: 100%;
   min-height: 100vh;
-  display: table;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background-color: rgba(0, 0, 0, 0.45);
 }
 
 .sign-in-left-pane {
-  z-index: 10;
+  //z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50%;
   min-height: 100%;
-  display: table-cell;
-  vertical-align: middle;
+  grid-column: 1/2;
+  margin: auto;
 }
 
 .actual-sign-in-logo {
@@ -22,16 +26,17 @@
 }
 
 .sign-in-right-pane {
-  vertical-align: middle;
+  margin: auto;
+  display: flex;
+  align-items: center;
   width: 50%;
   min-height: 100%;
-  display: table-cell;
   background-color: none;
 }
 
 .sign-in-right-pane-image {
   position: fixed;
-  margin-top: -48vh;
+  margin-left: -15vw;
   min-width: 55vw;
   min-height: 110vh;
   color: #FFFFFF;
@@ -42,6 +47,7 @@
 }
 
 .sign-in-right-pane-text {
+  justify-content: center;
   text-shadow:
 		-1px -1px 0 #000,
 		1px -1px 0 #000,
@@ -54,6 +60,7 @@
   min-height: 100%;
   background-color: none;
   color: #FFFFFF;
+  margin: auto;
 }
 
 .main-page-wrapper {
